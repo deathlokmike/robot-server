@@ -1,7 +1,7 @@
 body {
     background-color: #3c3c3c;
     color: #202124;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,7 +66,6 @@ canvas {
     max-height: 100%;
 }
 
-
 .button-group {
     display: flex;
     flex-wrap: wrap;
@@ -84,7 +83,9 @@ button {
     border-radius: 8px;
     flex: 1;
     min-width: 45%;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
@@ -104,9 +105,6 @@ button:active {
     align-items: center;
     margin-bottom: 10px;
 }
-
-
-
 
 .battery-status {
     display: flex;
@@ -147,15 +145,15 @@ button:active {
 }
 
 .battery-full {
-    background-color: #4CAF50;
+    background-color: #4caf50;
 }
 
 .battery-medium {
-    background-color: #FFEB3B;
+    background-color: #ffeb3b;
 }
 
 .battery-low {
-    background-color: #F44336;
+    background-color: #f44336;
 }
 
 .data-container .data-item {
