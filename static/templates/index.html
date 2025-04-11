@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Control</title>
+    <link rel="icon" href="{{ url_for('static', path='favicon.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', path='styles/index.css') }}">
+</head>
+
+<body>
+    <div class="grid-container">
+        <!-- Блок управления -->
+        <div class="control-panel">
+            <h1>Control</h1>
+            <div class="button-group">
+                <button onclick="sendMessage('start')">Start</button>
+                <button onclick="sendMessage('stop')">Stop</button>
+                <button onclick="sendMessage('check_system')">Check</button>
+                <button onclick="sendMessage('check_camera')">Take image</button>
+            </div>
+        </div>
+
+        <!-- Блок данных -->
+        <div class="data-container">
+            <div class="data-header">
+                <h1>Data</h1>
+                <div class="battery-status">
+                    <div class="battery-icon">
+                        <div id="battery-icon" class="battery-level"></div>
+                    </div>
+                    <span id="battery-percentage">-</span>
+                </div>
+            </div>
+
+            <div class="image-wrapper">
+                <img class="camera-image" id="image" src="" alt="No image yet" />
+            </div>
+
+            <div class="data-content">
+                <div class="data-item">
+                    <span class="data-label">Voltage</span>
+                    <span id="voltage" class="data-value">-</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Currency</span>
+                    <span id="current" class="data-value">-</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Angle</span>
+                    <span id="angle" class="data-value">-</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Front</span>
+                    <span id="front" class="data-value">-</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Side</span>
+                    <span id="side" class="data-value">-</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Hall</span>
+                    <span id="hall" class="data-value">-</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Блок карты -->
+        <div class="map-container">
+            <h1>Map</h1>
+            <canvas id="robotMap" width="800" height="600"></canvas>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', path='scripts/index.js') }}"></script>
+</body>
+
+</html>
