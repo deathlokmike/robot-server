@@ -14,7 +14,7 @@ class CleanerDatabase:
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS states (
                     mac TEXT,
-                    timestamp INTEGER,
+                    timestamp REAL,
                     distance_front REAL,
                     distance_side REAL,
                     distance_hall REAL,

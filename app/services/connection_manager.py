@@ -9,7 +9,13 @@ from app.services.types import Cleaner, CleanerState, CleanerStatus, ConnectionT
 
 def parse_cleaner_state(data: str) -> CleanerState:
     pattern = re.compile(
-        r"vol:(?P<vol>[-\d.]+),cur:(?P<cur>[-\d.]+),df:(?P<df>[-\d.]+),ds:(?P<ds>[-\d.]+),ang:(?P<ang>[-\d.]+),ts:(?P<ts>\d+),dh:(?P<dh>[-\d.]+)"
+        r"vol:(?P<vol>-?\d+(?:\.\d+)?),"
+        r"cur:(?P<cur>-?\d+(?:\.\d+)?),"
+        r"df:(?P<df>-?\d+(?:\.\d+)?),"
+        r"ds:(?P<ds>-?\d+(?:\.\d+)?),"
+        r"ang:(?P<ang>-?\d+(?:\.\d+)?),"
+        r"t:(?P<t>-?\d+(?:\.\d+)?),"
+        r"dh:(?P<dh>-?\d+(?:\.\d+)?)"
     )
     match = pattern.match(data)
 
@@ -17,7 +23,7 @@ def parse_cleaner_state(data: str) -> CleanerState:
         raise ValueError("Invalid input format")
 
     return CleanerState(
-        timestamp=int(match.group("ts")),
+        timestamp=float(match.group("t")),
         distance_front=float(match.group("df")),
         distance_side=float(match.group("ds")),
         distance_hall=float(match.group("dh")),

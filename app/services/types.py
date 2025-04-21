@@ -26,7 +26,7 @@ class CleanerStatus(Enum):
 
 @dataclass
 class CleanerState:
-    timestamp: int
+    timestamp: float
     distance_front: float
     distance_side: float
     distance_hall: float
