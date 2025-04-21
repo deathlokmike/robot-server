@@ -179,15 +179,28 @@ button:active {
     color: #1e88e5;
 }
 
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .image-wrapper {
     display: none;
     max-width: 150px;
+    flex-shrink: 0;
 }
 
 .camera-image {
     max-width: 100%;
     border-radius: 8px;
+    height: auto;
+    display: block;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-content {
+    flex: 1; /* Занимает всё оставшееся пространство */
 }
 
 @media (max-width: 600px) {
