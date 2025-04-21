@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 
 import matplotlib.pyplot as plt
 import numpy as np
+
 from tests.get_valid_data import get_valid
 
 if TYPE_CHECKING:

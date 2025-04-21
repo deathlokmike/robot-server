@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional
 
 from starlette.websockets import WebSocket
 
@@ -38,7 +37,7 @@ class CleanerState:
 @dataclass
 class Cleaner:
     websocket: WebSocket
-    mac_address: Optional[str] = None
+    mac_address: str = "Undefined"
     status: CleanerStatus = CleanerStatus.stopped
 
     def update(self, status: CleanerStatus):
