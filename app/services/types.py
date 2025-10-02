@@ -5,13 +5,14 @@ from starlette.websockets import WebSocket
 
 
 class ConnectionType(Enum):
-    cleaner = 0
+    robot = 0
     client = 1
 
 
-class CleanerStatus(Enum):
+class RobotStatus(Enum):
     launched = "start"
     stopped = "stop"
+
     suspended = "suspend"
     resumed = "resume"
     checked_system = "check_system"
@@ -24,7 +25,7 @@ class CleanerStatus(Enum):
 
 
 @dataclass
-class CleanerState:
+class RobotState:
     timestamp: float
     distance_front: float
     distance_side: float
@@ -35,11 +36,11 @@ class CleanerState:
 
 
 @dataclass
-class Cleaner:
+class Robot:
     websocket: WebSocket
     mac_address: str = "Undefined"
-    status: CleanerStatus = CleanerStatus.stopped
+    status: RobotStatus = RobotStatus.stopped
 
-    def update(self, status: CleanerStatus):
+    def update(self, status: RobotStatus):
         self.status = status
         print(self.status)

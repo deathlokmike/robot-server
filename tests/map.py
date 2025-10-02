@@ -8,7 +8,7 @@ import numpy as np
 from tests.get_valid_data import get_valid
 
 if TYPE_CHECKING:
-    from app.services.types import CleanerState
+    from app.services.types import RobotState
 
 
 class Direction(Enum):
@@ -41,7 +41,7 @@ def get_direction(angle: float) -> Direction:
     return Direction.right
 
 
-def handle_forward(state: "CleanerState", direction: Direction, offset: "Coordinate"):
+def handle_forward(state: "RobotState", direction: Direction, offset: "Coordinate"):
     x = offset.x - state.distance_side * np.cos(
         np.radians(state.angle - direction.value)
     )
@@ -66,7 +66,7 @@ def handle_forward(state: "CleanerState", direction: Direction, offset: "Coordin
     )
 
 
-def handle_left(state: "CleanerState", direction: Direction, offset: "Coordinate"):
+def handle_left(state: "RobotState", direction: Direction, offset: "Coordinate"):
     x = offset.x - state.total * np.cos(np.radians(state.angle - direction.value))
     y = offset.y - state.distance_side * np.cos(
         np.radians(state.angle - direction.value)
@@ -91,7 +91,7 @@ def handle_left(state: "CleanerState", direction: Direction, offset: "Coordinate
     )
 
 
-def handle_backward(state: "CleanerState", direction: Direction, offset: "Coordinate"):
+def handle_backward(state: "RobotState", direction: Direction, offset: "Coordinate"):
     x = offset.x + state.distance_side * np.cos(
         np.radians(state.angle - direction.value)
     )
@@ -116,7 +116,7 @@ def handle_backward(state: "CleanerState", direction: Direction, offset: "Coordi
     )
 
 
-def handle_right(state: "CleanerState", direction: Direction, offset: "Coordinate"):
+def handle_right(state: "RobotState", direction: Direction, offset: "Coordinate"):
     x = offset.x + state.total * np.cos(np.radians(state.angle - direction.value))
     y = offset.y + state.distance_side * np.cos(
         np.radians(state.angle - direction.value)
@@ -141,7 +141,7 @@ def handle_right(state: "CleanerState", direction: Direction, offset: "Coordinat
     )
 
 
-def process_states(states: list["CleanerState"]):
+def process_states(states: list["RobotState"]):
     robot_cords: list[Coordinate] = []
     walls: list[list[Coordinate]] = [[], []]
     previous_direction = Direction.forward

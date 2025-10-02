@@ -4,7 +4,7 @@ from io import BytesIO
 from PIL import Image
 
 from app.services.connection_manager import connection_manager
-from app.services.types import CleanerStatus
+from app.services.types import RobotStatus
 from app.services.yolo_model import YoloModel
 
 
@@ -24,10 +24,10 @@ class ImageProcessor:
         person_boxes = YoloModel().find_person(image)
 
         if len(person_boxes) > 0:
-            await connection_manager.send_message_to_cleaner(CleanerStatus.suspended)
+            await connection_manager.send_message_to_robot(RobotStatus.suspended)
             YoloModel().draw_rectangle(image, person_boxes)
         else:
-            await connection_manager.send_message_to_cleaner(CleanerStatus.resumed)
+            await connection_manager.send_message_to_robot(RobotStatus.resumed)
 
         image_base64 = _format_image_to_base64(image)
         await connection_manager.send_data_to_client(image_base64)

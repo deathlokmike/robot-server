@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
       walls.push({ x: x, y: y + df });
       walls.push({ x: x + ds, y: y });
     });
-
     draw();
   }
 

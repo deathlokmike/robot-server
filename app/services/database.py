@@ -1,10 +1,10 @@
 import sqlite3
 
-from app.services.types import CleanerState
+from app.services.types import RobotState
 
 
-class CleanerDatabase:
-    def __init__(self, db_name: str = "cleaner.db"):
+class RobotDatabase:
+    def __init__(self, db_name: str = "robot.db"):
         self.db_name = db_name
         self._create_table()
 
@@ -23,7 +23,7 @@ class CleanerDatabase:
             """)
             conn.commit()
 
-    def add(self, mac: str, state: CleanerState):
+    def add(self, mac: str, state: RobotState):
         with sqlite3.connect(self.db_name) as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -42,7 +42,7 @@ class CleanerDatabase:
             )
             conn.commit()
 
-    def get_by_mac(self, mac: str) -> list[CleanerState]:
+    def get_by_mac(self, mac: str) -> list[RobotState]:
         with sqlite3.connect(self.db_name) as conn:
             cursor = conn.cursor()
             cursor.execute(
@@ -52,4 +52,4 @@ class CleanerDatabase:
                 (mac,),
             )
             rows = cursor.fetchall()
-            return [CleanerState(*row) for row in rows]
+            return [RobotState(*row) for row in rows]

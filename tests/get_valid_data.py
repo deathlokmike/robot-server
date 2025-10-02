@@ -1,14 +1,14 @@
-from app.services.database import CleanerDatabase
-from app.services.types import CleanerState
+from app.services.database import RobotDatabase
+from app.services.types import RobotState
 
 
-def get_valid() -> list[CleanerState]:
-    db = CleanerDatabase()
+def get_valid() -> list[RobotState]:
+    db = RobotDatabase()
     states = db.get_by_mac("FC:E8:C0:7C:21:8C")
-    states_valid: list[CleanerState] = []
+    states_valid: list[RobotState] = []
     tolerance = 1.0
 
-    prev_state: CleanerState | None = None
+    prev_state: RobotState | None = None
     total = 0
 
     for i in range(1, len(states)):
